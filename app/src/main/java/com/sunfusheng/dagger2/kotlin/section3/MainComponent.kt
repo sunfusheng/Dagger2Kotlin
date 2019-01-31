@@ -1,5 +1,6 @@
 package com.sunfusheng.github.kotlin
 
+import com.sunfusheng.dagger2.kotlin.MainActivity
 import dagger.Component
 
 /**
