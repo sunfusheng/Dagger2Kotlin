@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import kotlinx.coroutines.*
-import kotlin.system.measureTimeMillis
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,16 +13,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        testCoroutine()
     }
 
     fun testCoroutine() {
-        GlobalScope.launch {
-            val time = measureTimeMillis {
-                val x = doSomethingAsync1()
-                val y = doSomethingAsync2()
-                Log.d("--->", "x + y = ${x + y}")
-            }
-            Log.d("--->", "$time ms")
+        GlobalScope.launch{
+            val x = doSomethingAsync1()
+            val y = doSomethingAsync2()
+            Log.d("--->", "x + y = ${x + y}")
+            Log.d("--->", Thread.currentThread().name)
         }.invokeOnCompletion {
 
         }

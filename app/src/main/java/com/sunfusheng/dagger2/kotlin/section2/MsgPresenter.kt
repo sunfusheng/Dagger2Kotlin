@@ -7,7 +7,7 @@ import kotlinx.coroutines.*
  */
 class MsgPresenter {
     private var mView: IMsgView? = null
-    private val mJobs: ArrayList<Job> = ArrayList()
+    private var mJob: Job? = null
 
 
     fun attachView(view: IMsgView) {
@@ -16,21 +16,20 @@ class MsgPresenter {
 
     fun detachView() {
         this.mView = null
-
-        for (job in mJobs) {
-            job.cancel()
-        }
+        this.mJob?.cancel()
     }
 
     fun getMsg() {
-        GlobalScope.launch {
-            val job = async {
-                mView?.showMsg("Loading...")
+        mJob = GlobalScope.launch(Dispatchers.Main) {
+            mView?.showMsg("Loading...")
+            withContext(Dispatchers.Default) {
                 delay(3000)
-                mView?.showMsg("Done!")
-                true
             }
-            mJobs.add(job)
+            mView?.showMsg("Done!")
         }
+    }
+
+    private suspend fun doRequest() = withContext(Dispatchers.Default) {
+        delay(3000)
     }
 }

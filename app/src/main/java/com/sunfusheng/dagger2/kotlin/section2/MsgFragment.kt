@@ -1,8 +1,6 @@
 package com.sunfusheng.dagger2.kotlin.section2
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,11 +32,7 @@ class MsgFragment : Fragment(), IMsgView {
         mPresenter.detachView()
     }
 
-    val UI = Handler(Looper.getMainLooper())
-
     override fun showMsg(msg: String) {
-        UI.post {
-            vMsg.text = msg
-        }
+        vMsg.text = msg
     }
 }
