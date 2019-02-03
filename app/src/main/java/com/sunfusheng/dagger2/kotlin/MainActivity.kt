@@ -7,13 +7,12 @@ import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
-    @ObsoleteCoroutinesApi
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        testCoroutine()
+        testCoroutine()
     }
 
     fun testCoroutine() {
@@ -21,9 +20,6 @@ class MainActivity : AppCompatActivity() {
             val x = doSomethingAsync1()
             val y = doSomethingAsync2()
             Log.d("--->", "x + y = ${x + y}")
-            Log.d("--->", Thread.currentThread().name)
-        }.invokeOnCompletion {
-
         }
     }
 

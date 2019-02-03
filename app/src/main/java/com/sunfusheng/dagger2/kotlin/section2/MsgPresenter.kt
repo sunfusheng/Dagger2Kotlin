@@ -25,11 +25,12 @@ class MsgPresenter {
             withContext(Dispatchers.Default) {
                 delay(3000)
             }
+//            doRequestAsync().await()
             mView?.showMsg("Done!")
         }
     }
 
-    private suspend fun doRequest() = withContext(Dispatchers.Default) {
+    private suspend fun doRequestAsync() = GlobalScope.async(Dispatchers.Default) {
         delay(3000)
     }
 }
