@@ -5,12 +5,12 @@ import kotlinx.coroutines.*
 /**
  * @author sunfusheng on 2019/1/31.
  */
-class MsgPresenter {
-    private var mView: IMsgView? = null
+class UserPresenter {
+    private var mView: IUserView? = null
     private var mJob: Job? = null
 
 
-    fun attachView(view: IMsgView) {
+    fun attachView(view: IUserView) {
         this.mView = view
     }
 
@@ -21,16 +21,13 @@ class MsgPresenter {
 
     fun getMsg() {
         mJob = GlobalScope.launch(Dispatchers.Main) {
-            mView?.showMsg("Loading...")
-            withContext(Dispatchers.Default) {
-                delay(3000)
-            }
-//            doRequestAsync().await()
-            mView?.showMsg("Done!")
+            val user = fetchUserAsync().await()
+            mView?.showUser(user)
         }
     }
 
-    private suspend fun doRequestAsync() = GlobalScope.async(Dispatchers.Default) {
+    private suspend fun fetchUserAsync() = GlobalScope.async(Dispatchers.Default) {
         delay(3000)
+        User("sunfusheng")
     }
 }

@@ -13,10 +13,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         testCoroutine()
+
+
     }
 
     fun testCoroutine() {
-        GlobalScope.launch{
+        GlobalScope.launch {
             val x = doSomethingAsync1()
             val y = doSomethingAsync2()
             Log.d("--->", "x + y = ${x + y}")

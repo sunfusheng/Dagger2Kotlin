@@ -11,10 +11,10 @@ import kotlinx.android.synthetic.main.fragment_msg.*
 /**
  * @author by sunfusheng on 2019/2/1
  */
-class MsgFragment : Fragment(), IMsgView {
+class UserFragment : Fragment(), IUserView {
 
-    private val mPresenter: MsgPresenter by lazy {
-        MsgPresenter()
+    private val mPresenter: UserPresenter by lazy {
+        UserPresenter()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,7 +32,7 @@ class MsgFragment : Fragment(), IMsgView {
         mPresenter.detachView()
     }
 
-    override fun showMsg(msg: String) {
-        vMsg.text = msg
+    override fun showUser(user: User) {
+        vMsg.text = user.name
     }
 }
