@@ -1,4 +1,4 @@
-package com.sunfusheng.dagger2.kotlin.mvp_without_dagger2
+package com.sunfusheng.dagger2.kotlin.mvp_with_dagger2
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.sunfusheng.dagger2.kotlin.R
 import kotlinx.android.synthetic.main.fragment_text.*
+import javax.inject.Inject
 
 /**
- * @author by sunfusheng on 2019/2/1
+ * @author by sunfusheng on 2019/2/7
  */
-class UserFragment : Fragment(), IUserView {
+class RepoFragment : Fragment(), IRepoView {
 
-    val mPresenter: UserPresenter by lazy {
-        UserPresenter()
-    }
+    @Inject
+    lateinit var mPresenter: RepoPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return layoutInflater.inflate(R.layout.fragment_text, container, false)
@@ -23,16 +23,16 @@ class UserFragment : Fragment(), IUserView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mPresenter.attachView(this)
-        mPresenter.fetchUser()
+
+        DaggerRepoComponent.builder()
+            .repoModule(RepoModule(this))
+            .build()
+            .inject(this)
+
+        mPresenter.fetchRepo()
     }
 
-    override fun onDestroyView() {
-        mPresenter.detachView()
-        super.onDestroyView()
-    }
-
-    override fun onUserCallback(user: User) {
-        vText.text = user.username
+    override fun onRepoCallback(repo: Repo) {
+        vText.text = repo.reponame
     }
 }

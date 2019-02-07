@@ -9,7 +9,6 @@ class UserPresenter {
     private var mView: IUserView? = null
     private var mJob: Job? = null
 
-
     fun attachView(view: IUserView) {
         this.mView = view
     }
@@ -19,10 +18,10 @@ class UserPresenter {
         this.mJob?.cancel()
     }
 
-    fun getMsg() {
+    fun fetchUser() {
         mJob = GlobalScope.launch(Dispatchers.Main) {
             val user = fetchUserAsync().await()
-            mView?.showUser(user)
+            mView?.onUserCallback(user)
         }
     }
 
