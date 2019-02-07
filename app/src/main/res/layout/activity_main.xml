@@ -8,7 +8,7 @@
 	<fragment
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:name="com.sunfusheng.dagger2.kotlin.section2.UserFragment"
+		android:name="com.sunfusheng.dagger2.kotlin.mvp_without_dagger2.UserFragment"
 		android:id="@+id/fragment"/>
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.sunfusheng.dagger2.kotlin.section2
+package com.sunfusheng.dagger2.kotlin.mvp_without_dagger2
 
 import kotlinx.coroutines.*
 

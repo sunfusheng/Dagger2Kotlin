@@ -3,7 +3,7 @@ package com.sunfusheng.dagger2.kotlin
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import kotlinx.coroutines.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,27 +12,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        testCoroutine()
-
-
-    }
-
-    fun testCoroutine() {
-        GlobalScope.launch {
-            val x = doSomethingAsync1()
-            val y = doSomethingAsync2()
-            Log.d("--->", "x + y = ${x + y}")
+        loop@ for (i in 1..100) {
+            for (j in 1..100) {
+                if (i == 10 && j == 10) {
+                    Log.d("--->", "i=$i, j=$j")
+                    break@loop
+                }
+            }
+            Log.d("--->", "i=$i")
         }
-    }
 
-    suspend fun doSomethingAsync1() = coroutineScope {
-        delay(1000)
-        1
-    }
-
-    suspend fun doSomethingAsync2() = coroutineScope {
-        delay(1000)
-        1
+        apply {
+            val a = parent
+            return
+        }
     }
 
 

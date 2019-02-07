@@ -1,4 +1,4 @@
-package com.sunfusheng.dagger2.kotlin.section2
+package com.sunfusheng.dagger2.kotlin.mvp_without_dagger2
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sunfusheng.dagger2.kotlin.R
-import kotlinx.android.synthetic.main.fragment_msg.*
+import kotlinx.android.synthetic.main.fragment_user.*
 
 /**
  * @author by sunfusheng on 2019/2/1
@@ -18,7 +18,7 @@ class UserFragment : Fragment(), IUserView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return layoutInflater.inflate(R.layout.fragment_msg, container, false)
+        return layoutInflater.inflate(R.layout.fragment_user, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,6 +33,6 @@ class UserFragment : Fragment(), IUserView {
     }
 
     override fun showUser(user: User) {
-        vMsg.text = user.name
+        vUser.text = user.username
     }
 }
