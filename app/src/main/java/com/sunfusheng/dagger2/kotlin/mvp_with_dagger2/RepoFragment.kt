@@ -29,6 +29,7 @@ class RepoFragment : Fragment(), IRepoView {
             .build()
             .inject(this)
 
+        lifecycle.addObserver(mPresenter)
         mPresenter.fetchRepo()
     }
 
