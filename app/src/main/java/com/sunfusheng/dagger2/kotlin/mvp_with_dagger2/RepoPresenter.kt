@@ -18,13 +18,11 @@ class RepoPresenter(private val mView: IRepoView) : LifecycleObserver {
 
     fun fetchRepo() {
         mJob = GlobalScope.launch(Dispatchers.Main) {
-            val repo = fetchRepoAsync().await()
+            val repo = async {
+                delay(3000)
+                Repo("MarqueeView")
+            }.await()
             mView.onRepoCallback(repo)
         }
-    }
-
-    private suspend fun fetchRepoAsync() = GlobalScope.async(Dispatchers.Default) {
-        delay(3000)
-        Repo("MarqueeView")
     }
 }

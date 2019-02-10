@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_text.*
 class UserFragment : Fragment(), IUserView {
 
     val mPresenter: UserPresenter by lazy {
-        UserPresenter()
+        UserPresenter(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -23,7 +23,6 @@ class UserFragment : Fragment(), IUserView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mPresenter.attachView(this)
         mPresenter.fetchUser()
     }
 
