@@ -33,6 +33,11 @@ class RepoFragment : Fragment(), IRepoView {
         mPresenter.fetchRepo()
     }
 
+    override fun onDestroyView() {
+        lifecycle.removeObserver(mPresenter)
+        super.onDestroyView()
+    }
+
     override fun onRepoCallback(repo: Repo) {
         vText.text = repo.reponame
     }
