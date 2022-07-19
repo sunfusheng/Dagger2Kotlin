@@ -1,15 +1,13 @@
 package com.sunfusheng.dagger2.kotlin.basic
 
 import dagger.Component
-import dagger.Module
-import dagger.Provides
 import javax.inject.Inject
 
 /**
  * @author sunfusheng
  * @since  2022/07/19
  */
-class Man1() {
+class Man1 {
 
     @Inject
     lateinit var car1: Car1
@@ -23,7 +21,6 @@ class Man1() {
 
 class Car1 @Inject constructor() {
 
-    override fun toString() = "Car1"
 }
 
 @Component

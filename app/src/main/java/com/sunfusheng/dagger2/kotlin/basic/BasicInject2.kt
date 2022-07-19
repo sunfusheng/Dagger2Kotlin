@@ -9,7 +9,7 @@ import javax.inject.Inject
  * @author sunfusheng
  * @since  2022/07/19
  */
-class Man2() {
+class Man2 {
 
     @Inject
     lateinit var car2: Car2
@@ -23,7 +23,6 @@ class Man2() {
 
 class Car2 {
 
-    override fun toString() = "Car2"
 }
 
 @Module
