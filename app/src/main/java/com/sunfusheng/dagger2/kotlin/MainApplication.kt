@@ -1,10 +1,9 @@
 package com.sunfusheng.dagger2.kotlin
 
 import android.app.Application
-import com.sunfusheng.dagger2.kotlin.scope.AppComponent
-import com.sunfusheng.dagger2.kotlin.scope.AppModule
-import com.sunfusheng.dagger2.kotlin.scope.ContextModule
-import com.sunfusheng.dagger2.kotlin.scope.DaggerAppComponent
+import com.sunfusheng.dagger2.kotlin.component.AppComponent
+import com.sunfusheng.dagger2.kotlin.component.ApplicationInfoComponent
+import com.sunfusheng.dagger2.kotlin.component.DaggerAppComponent
 
 /**
  * @author sunfusheng
@@ -13,12 +12,14 @@ import com.sunfusheng.dagger2.kotlin.scope.DaggerAppComponent
 class MainApplication : Application() {
 
     lateinit var appComponent: AppComponent
+    lateinit var applicationInfoComponent: ApplicationInfoComponent
 
     override fun onCreate() {
         super.onCreate()
         appComponent = DaggerAppComponent.builder()
-            .contextModule(ContextModule(this))
-            .appModule(AppModule())
+            .context(this)
             .build()
+
+        applicationInfoComponent = appComponent.applicationInfoComponent().build()
     }
 }

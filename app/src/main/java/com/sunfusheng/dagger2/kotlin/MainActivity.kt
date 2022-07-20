@@ -1,5 +1,6 @@
 package com.sunfusheng.dagger2.kotlin
 
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.os.Bundle
 import android.util.Log
@@ -11,10 +12,13 @@ import com.sunfusheng.dagger2.kotlin.qualifier.Man4
 import dagger.Lazy
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
 
     @Inject
     lateinit var mPackageInfo: Lazy<PackageInfo>
+
+    @Inject
+    lateinit var mApplicationInfo: Lazy<ApplicationInfo>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         basicInject()
         lazyInject()
         qualifierInject()
-        scopeInject()
+        componentInject()
     }
 
     private fun basicInject() {
@@ -41,10 +45,14 @@ class MainActivity : AppCompatActivity() {
         Man4().goHome()
     }
 
-    private fun scopeInject() {
-        (application as MainApplication).appComponent.injectMainActivity(this)
+    private fun componentInject() {
+        (application as MainApplication).applicationInfoComponent.injectMainActivity(this)
 
-        Log.d(TAG, "[sfs] versionName: ${mPackageInfo.get().versionName}")
+        val pi = mPackageInfo.get()
+        Log.d(TAG, "[sfs] $pi versionName: ${pi.versionName}")
+
+        val ai = mApplicationInfo.get()
+        Log.d(TAG, "[sfs] $ai targetSdkVersion: ${ai.targetSdkVersion}")
     }
 
     companion object {
