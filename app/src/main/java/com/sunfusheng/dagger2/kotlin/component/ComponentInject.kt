@@ -52,7 +52,7 @@ interface ApplicationInfoComponent {
         fun build(): ApplicationInfoComponent
     }
 
-    fun injectMainActivity(mainActivity: MainActivity)
+    fun inject(mainActivity: MainActivity)
 }
 
 @Module

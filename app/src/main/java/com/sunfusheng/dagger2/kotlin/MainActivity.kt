@@ -46,7 +46,7 @@ class MainActivity() : AppCompatActivity() {
     }
 
     private fun componentInject() {
-        (application as MainApplication).applicationInfoComponent.injectMainActivity(this)
+        (application as MainApplication).applicationInfoComponent.inject(this)
 
         val pi = mPackageInfo.get()
         Log.d(TAG, "[sfs] $pi versionName: ${pi.versionName}")
